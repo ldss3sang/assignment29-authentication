@@ -1,49 +1,16 @@
 "use client";
 
-import { useFormState } from "react-dom";
-import { FireIcon, EnvelopeIcon, UserIcon, KeyIcon } from "@heroicons/react/24/solid";
-
-import { handleForm } from "./actions";
-
-import Input from "../components/input";
-import Button from "../components/button";
-import SuccessMessage from "../components/success-message";
+import Link from "next/link";
 
 export default function Home() {
-  const [state, action] = useFormState(handleForm, null);
-
   return (
     <main className="flex flex-col gap-10 items-center justify-center">
-      <h1 className="text-center text-6xl">
-        <FireIcon className="size-20 text-red-400" />
-      </h1>
-      <form action={action} className="w-full flex flex-col gap-5">
-        <Input
-          name="email"
-          type="email"
-          placeholder="Email"
-          required={true}
-          errors={state?.error?.fieldErrors.email}
-          labelIcon={<EnvelopeIcon />}
-        />
-        <Input
-          name="username"
-          placeholder="Username"
-          required={true}
-          errors={state?.error?.fieldErrors.username}
-          labelIcon={<UserIcon />}
-        />
-        <Input
-          name="password"
-          type="password"
-          placeholder="Password"
-          required={true}
-          errors={state?.error?.fieldErrors.password}
-          labelIcon={<KeyIcon />}
-        />
-        <Button text="Log in" />
-        {state?.isSuccess && <SuccessMessage />}
-      </form>
+      Assignment 29 - Authentication
+      <Link className="primary-btn text-lg py-2.5" href="/log-in">Log in</Link>
+      <div className="flex gap-2">
+        <span>Don't have an account?</span>
+        <span><Link className="text-blue-600 font-bold hover:underline" href="create-account">Create Account</Link></span>
+      </div>
     </main>
   );
 }
